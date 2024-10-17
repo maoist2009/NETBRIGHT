@@ -10,31 +10,6 @@ on:
       - data
 
 jobs:
-  build-android-null:
-    name: Build for Android (null)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          path: master
-
-      - name: Build null
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozernull
-        with:
-          repository_root: master
-          workdir: src/null
-          buildozer_version: stable
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: netbright_null.apk
-          path: ${{ steps.buildozernull.outputs.filename }}
-          retention-days: 5
-
   build-android-armeabi-v7a:
     name: Build for Android (armeabi-v7a)
     runs-on: ubuntu-latest
@@ -83,54 +58,4 @@ jobs:
         with:
           name: netbright_arm64-v8a.apk
           path: ${{ steps.buildozerv8.outputs.filename }}
-          retention-days: 5
-
-  build-android-x86:
-    name: Build for Android (x86)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          path: master
-
-      - name: Build x86
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozerx86
-        with:
-          repository_root: master
-          workdir: src/x86
-          buildozer_version: stable
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: netbright_x86.apk
-          path: ${{ steps.buildozerx86.outputs.filename }}
-          retention-days: 5
-
-  build-android-x86-64:
-    name: Build for Android (x86_64)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          path: master
-
-      - name: Build x86-64
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozerx64
-        with:
-          repository_root: master
-          workdir: src/x86-64
-          buildozer_version: stable
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: netbright_x86_64.apk
-          path: ${{ steps.buildozerx64.outputs.filename }}
           retention-days: 5
